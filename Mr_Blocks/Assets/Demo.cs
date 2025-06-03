@@ -486,4 +486,90 @@ class Enemy
     }
 }
 
+class Spectator
+{
+    //variables
+    private int health = 150;
+    private int maxHealth = 150;
+    private int attackDamage = 15;
+
+    public int Health
+    {
+        //Getter
+        get
+        {
+            return health;
+        }
+
+        //Setter
+        private set
+        {
+            //if the value provided is negative, store zero instead
+            if (value < 0)
+            {
+                health = 0;
+            }
+            //if value exceeds maximum health
+            else if (value > maxHealth)
+            {
+                health = maxHealth;
+            }
+            else
+            {
+                health = value;
+            }
+        }
+    }
+
+    //default constructor
+    public Spectator()
+    {
+        SpawnEnemy();
+    }
+
+    //function
+    private void SpawnEnemy()
+    {
+        Console.WriteLine("\n==================================================");
+        Console.WriteLine("      ?? CRUST BANDIT: NEMESIS OF ITALIAN CUISINE ?? ");
+        Console.WriteLine("==================================================\n");
+        Console.WriteLine("\nYou'll never catch me, flour face!\n");
+    }
+
+    private int generateRandomNumberInRange(int min, int max)
+    {
+        System.Random rand = new System.Random();
+        int randomNumber = rand.Next(min, max + 1);
+        return randomNumber;
+    }
+
+    public int CalculateTotalDamage()
+    {
+        int additionalDamage = generateRandomNumberInRange(5, 15);
+        int totalDamage = attackDamage + additionalDamage;
+
+        return totalDamage;
+    }
+
+    public void ShowAttackDamage(int totalDamage)
+    {
+        Console.WriteLine("             ?? PIZZA BATTLE ??                   ");
+        Console.WriteLine("============================================");
+        Console.WriteLine("CRUST BANDIT's attack dealt " + totalDamage + " damage! ??");
+        Console.WriteLine("--------------------------------------------");
+    }
+
+    public void TakeDamage(int damageReceived) => Health -= damageReceived;
+
+    public void DisplayEnemyStats()
+    {
+        Console.WriteLine("\n---------------------------------------------------");
+        Console.WriteLine("              CRUST BANDIT'S STATS                ");
+        Console.WriteLine("---------------------------------------------------");
+        Console.WriteLine("Health: " + Health + "/" + maxHealth);
+        Console.WriteLine("Sneaky Jab ??: " + attackDamage);
+        Console.WriteLine("Sneaky Jab ?? Boost ???: 5 to 15");
+    }
+}
+
 
