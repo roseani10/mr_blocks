@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        Debug.Log($"Horizontal: {horizontalInput}, Vertical: {verticalInput}");
+        //Debug.Log($"Horizontal: {horizontalInput}, Vertical: {verticalInput}");
     }
 
     private void MovePlayer()
@@ -33,5 +33,31 @@ public class Player : MonoBehaviour
         Vector3 moveDirection = new Vector3(horizontalInput, verticalInput, 0);
         Vector3 moveDelta = moveDirection.normalized * speed * Time.deltaTime;
         transform.position += moveDelta;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.CompareTag("Finish"))
+        {
+            LevelComplete();
+        }
+    }
+
+    private void LevelComplete()
+    {
+        Debug.Log("Level Complete!");
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Obstacle"))
+        {
+            PlayerDied();
+        }
+    }
+
+    private void PlayerDied()
+    {
+        Destroy(gameObject);
     }
 }
