@@ -7,17 +7,18 @@ public class Player : MonoBehaviour
     private float horizontalInput, verticalInput;
     public float speed = 5f;
 
+    private Rigidbody2D rb;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
         GetInput();
-        MovePlayer();
     }
 
     private void GetInput()
@@ -28,11 +29,15 @@ public class Player : MonoBehaviour
         //Debug.Log($"Horizontal: {horizontalInput}, Vertical: {verticalInput}");
     }
 
+    private void FixedUpdate()
+    {
+        MovePlayer();
+    }
+
     private void MovePlayer()
     {
-        Vector3 moveDirection = new Vector3(horizontalInput, verticalInput, 0);
-        Vector3 moveDelta = moveDirection.normalized * speed * Time.deltaTime;
-        transform.position += moveDelta;
+        Vector2 newVelocity = new Vector2(horizontalInput, verticalInput).normalized * speed;
+        rb.velocity = newVelocity;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
