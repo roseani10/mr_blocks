@@ -19,10 +19,12 @@ public class SpikeBall : MonoBehaviour
     public float rotationAngle = 90f;
     private void Update()
     {
+        Debug.Log("Inside Update.");
         RotateSpikeBall();
     }
     private void RotateSpikeBall()
     {
+        Debug.Log("Inside Rotate Spike Ball.");
         transform.Rotate(Vector3.forward, rotationAngle * Time.deltaTime);
     }
 }
