@@ -19,7 +19,7 @@ public class SpikeBall_Scaling : MonoBehaviour
     {
         currentScale = minScale;
         ApplyCurrentScale();
-        Debug.Log("Inside Start End!");
+        //Debug.Log("Inside Start End!");
     }
     private void Update()
     {
