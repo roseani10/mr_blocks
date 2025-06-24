@@ -24,7 +24,7 @@ public class SpikeBall : MonoBehaviour
     }
     private void RotateSpikeBall()
     {
-        //Debug.Log("Inside Rotate Spike Ball.");
+        Debug.Log("Inside Rotate Spike Ball.");
         transform.Rotate(Vector3.forward, rotationAngle * Time.deltaTime);
     }
 }
