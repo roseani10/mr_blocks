@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public LevelManager levelManager;
+
     private float horizontalInput, verticalInput;
     public float speed = 5f;
 
@@ -20,6 +22,7 @@ public class Player : MonoBehaviour
     {
         GetInput();
     }
+
 
     private void GetInput()
     {
@@ -48,25 +51,10 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Finish"))
-        {
-            Debug.Log("Level Complete!");
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Finish"))
-        {
-            Debug.Log("Level Complete!");
-        }
-    }
-
     private void LevelComplete()
     {
         Debug.Log("Level Complete!");
+        levelManager.OnLevelComplete();
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -77,24 +65,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnCollisionStay2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Obstacle"))
-        {
-            Debug.Log("Player Died!");
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Obstacle"))
-        {
-            Debug.Log("Player Died!");
-        }
-    }
-
     private void PlayerDied()
     {
+        levelManager.OnPlayerDeath();
         Destroy(gameObject);
     }
 }
