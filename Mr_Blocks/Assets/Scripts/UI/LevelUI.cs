@@ -16,7 +16,7 @@ public class LevelUI : MonoBehaviour
 
     private void UpdateLevelText()
     {
-        levelText.text = "Level: " + levelNumber;
+        levelText.text = "Level : " + levelNumber;
     }
 
     private void HideLevelPanel()
