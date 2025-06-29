@@ -11,9 +11,18 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    private SoundManager soundManager;
+
     // Start is called before the first frame update
     void Start()
     {
+        soundManager = FindObjectOfType<SoundManager>();
+
+        if(soundManager == null)
+        {
+            Debug.LogError("SoundManager not found in the scene.");
+        }
+
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -53,6 +62,10 @@ public class Player : MonoBehaviour
 
     private void LevelComplete()
     {
+        if (soundManager != null)
+        {
+            soundManager.PlayLevelCompleteAudio();
+        }
         Debug.Log("Level Complete!");
         levelManager.OnLevelComplete();
     }
@@ -67,6 +80,10 @@ public class Player : MonoBehaviour
 
     private void PlayerDied()
     {
+        if(soundManager != null)
+        {
+            soundManager.PlayGameOverAudio();
+        }
         levelManager.OnPlayerDeath();
         Destroy(gameObject);
     }

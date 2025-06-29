@@ -17,6 +17,8 @@ public class LevelUI : MonoBehaviour
 
     public Button menuButton;
 
+    private SoundManager soundManager;
+
     private void Awake()
     {
         AddListeners();
@@ -24,6 +26,13 @@ public class LevelUI : MonoBehaviour
 
     private void Start()
     {
+        soundManager = FindObjectOfType<SoundManager>();
+
+        if (soundManager == null)
+        {
+            Debug.LogError("SoundManager not found in the scene.");
+        }
+
         UpdateLevelText();
     }
 
@@ -40,11 +49,20 @@ public class LevelUI : MonoBehaviour
 
     private void MainMenuButton()
     {
+        if (soundManager != null)
+        {
+            soundManager.PlayButtonClickAudio();
+            soundManager.DestroySoundManager();
+        }
         levelManager.LoadMainMenu();
     }
 
     private void RestartButton()
     {
+        if (soundManager != null)
+        {
+            soundManager.PlayButtonClickAudio();
+        }
         levelManager.RestartLevel();
     }
 

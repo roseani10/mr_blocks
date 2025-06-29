@@ -11,9 +11,21 @@ public class MainMenuUI : MonoBehaviour
 
     private const int firstLevel = 1;
 
+    private SoundManager soundManager;
+
     private void Awake()
     {
         AddListeners();
+    }
+
+    private void Start()
+    {
+        soundManager = FindObjectOfType<SoundManager>();
+
+        if (soundManager == null)
+        {
+            Debug.LogError("SoundManager not found in the scene.");
+        }
     }
 
     private void AddListeners()
@@ -24,11 +36,19 @@ public class MainMenuUI : MonoBehaviour
 
     public void Play()
     {
+        if (soundManager != null)
+        {
+            soundManager.PlayButtonClickAudio();
+        }
         SceneManager.LoadScene(firstLevel);
     }
 
     public void Quit()
     {
+        if (soundManager != null)
+        {
+            soundManager.PlayButtonClickAudio();
+        }
         Application.Quit();
         Debug.Log("Game quit");
     }
