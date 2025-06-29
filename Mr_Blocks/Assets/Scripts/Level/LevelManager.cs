@@ -6,10 +6,17 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     private int currentSceneIndex;
+    public LevelUI levelUI;
+    private const int mainMenuIndex = 0;
 
     private void Start()
     {
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene(mainMenuIndex);
     }
 
     public void OnLevelComplete()
@@ -29,13 +36,13 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("You have completed all levels!");
+            levelUI.ShowGameWinUI();
         }
     }
 
     public void OnPlayerDeath()
     {
-        RestartLevel();
+        levelUI.ShowGameLoseUI();
     }
 
     public void RestartLevel()
