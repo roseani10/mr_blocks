@@ -13,7 +13,7 @@ public class SpikeBall : MonoBehaviour
 
     void DoSomething()
     {
-        //Debug.Log("Doing it first time.");
+        Debug.Log("Doing it first time.");
         RotateSpikeBall();
     }
     public float rotationAngle = 90f;
