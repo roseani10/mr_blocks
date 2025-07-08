@@ -7,7 +7,7 @@ public class SpikeBall : MonoBehaviour
 
     void Start()
     {
-        //Debug.Log("Start Called!");
+        Debug.Log("Start Called!");
         DoSomething();
     }
 
